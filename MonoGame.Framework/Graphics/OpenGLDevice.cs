@@ -695,6 +695,8 @@ namespace Microsoft.Xna.Framework.Graphics
 			Backbuffer.Dispose();
 			Backbuffer = null;
 
+			Framebuffer.Dispose();
+
 			XNAToGL.Clear();
 
 			Instance = null;
@@ -1822,6 +1824,13 @@ namespace Microsoft.Xna.Framework.Graphics
 						throw new NoSuitableGraphicsDeviceException("The graphics device does not support framebuffer objects.");
 					}
 				}
+			}
+
+			public static void Dispose()
+			{
+				hasARB = false;
+				currentReadFramebuffer = 0;
+				currentDrawFramebuffer = 0;
 			}
 
 			public static int GenFramebuffer()
